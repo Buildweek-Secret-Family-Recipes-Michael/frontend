@@ -1,0 +1,15 @@
+
+USER FORM
+// This is where the user onboarding form will live. UserForm will authenticate user and push them to main page. 
+
+// Once pushed to the main page, the user can see all recipe cards in database, then they can click on navbar add recipe link to take them to add recipe form page. 
+
+ADD RECIPE
+// Link on navbar will take user to add recipe form page. 
+// This is where the add recipe form will live. 
+
+EDITING AND DELETING
+// User can click on individual recipe, which takes them to the specific recipe page, enabling them to delete or edit recipe. 
+
+HOME PAGE WILL HAVE SEARCH BAR FUNCTIONALITY
+
