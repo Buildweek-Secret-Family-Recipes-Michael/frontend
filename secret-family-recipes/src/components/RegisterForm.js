@@ -9,20 +9,29 @@ import axios from "axios";
 
 
 const formSchema = yup.object().shape({
+    name: yup.string().min(4, '4 characters minimum for name').required("Name required"),
+    lastName: yup.string().required("Last Name required"),
     email: yup.string('@').email('Valid Email needed').required('must include email'),
     password: yup.string().min(5, 'password needs to be more than 5 characters long'),
+    terms: yup.boolean().oneOf([true], "please validate you are human")
 })
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const [userState, setUserState] = useState({
+      name: '',
+      lastName:'',
         email: '',
         password: '',
+        terms:false,
     })
 
 
     const [errState, setErrState] = useState({
+      name: '',
+          lastName:'',
         email: '',
         password: '',
+        terms:'',
     })
     
     const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -72,7 +81,34 @@ export default function LoginForm() {
     return (
         <form onSubmit={formSubmit}>
             <ul>
-                
+                <label htmlFor='name'>Name
+                <div>
+                        <input id='name'
+                            type='name'
+                            name='name'
+                            placeholder='Name here'
+                            value={userState.name}
+                            onChange={inputChange}
+                        />
+                    </div>
+
+                     {errState.name.length > 6 ? (
+            <p className="error">{errState.name}</p>
+                    ) : null}
+                    
+                </label>
+<label htmlFor='lastName'>Last Name
+                <div>
+                        <input id='lastName'
+                            type='lastName'
+                            name='lastName'
+                            placeholder='Last Name here'
+                            value={userState.lastName}
+                            onChange={inputChange}
+                        />
+                    </div>
+                    
+                </label>
  <label htmlFor="email">Email
           <div>
             <input
@@ -109,9 +145,23 @@ export default function LoginForm() {
             <p className="error">{errState.password}</p>
           ) : null}
         </label>
-       
+        <label htmlFor="validate">
+          <div>
+            Validate Here
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              checked={userState.terms}
+              onChange={inputChange}
+            />
+          </div>
 
-          <button
+          {errState.terms.length > 1 ? (
+            <p className="error">{errState.terms}</p>
+          ) : null}
+        </label>
+        <button
           type="submit"
           id="submit"
           name="submit"
