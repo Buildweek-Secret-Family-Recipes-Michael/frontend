@@ -8,7 +8,7 @@ const initialRecipe = {
   recipe: "",
 };
 
-const UpdateRecipe = () => {
+const EditDelete = () => {
   const [recipe, setRecipe] = useState(initialRecipe);
 
   const handleSubmit = (e) => {
