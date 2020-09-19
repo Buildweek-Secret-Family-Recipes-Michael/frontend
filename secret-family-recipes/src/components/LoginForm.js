@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 const formSchema = yup.object().shape({
-      username: yup.string().required("user name required"),
+    username: yup.string().required("user name required"),
     password: yup.string().min(5, 'password needs to be more than 5 characters long'),
 })
 
