@@ -1,12 +1,11 @@
-// This is where the user onboarding form will live. UserForm will authenticate user and push them to main page. 
+// This is where the user onboarding form will live. UserForm will authenticate user and push them to main page.
 
-// Once pushed to the main page, the user can see all recipe cards in database, then they can click on navbar add recipe link to take them to add recipe form page. 
-
+// Once pushed to the main page, the user can see all recipe cards in database, then they can click on navbar add recipe link to take them to add recipe form page.
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
-
 
 const formSchema = yup.object().shape({
       username: yup.string().required("user name required"),
@@ -52,7 +51,7 @@ export default function LoginForm() {
       });
   };
 
-     const inputChange = (e) => {
+  const inputChange = (e) => {
     e.persist();
     validate(e);
     let value =
@@ -65,7 +64,11 @@ export default function LoginForm() {
     console.log("form submitted for review");
     axios
       .post("https://reqres.in/api/users", userState)
-      .then((response) => console.log(response))
+      .then((res => {
+        console.log(res)
+        localStorage.setItem("token", res.data.payload)
+        history.push("/Home")
+      }))
       .catch((err) => console.log(err));
   };
     
@@ -74,6 +77,7 @@ export default function LoginForm() {
             <ul>
                 
  <label htmlFor="username">User Name
+
           <div>
             <input
               id="username"
@@ -84,11 +88,13 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
+
                     
                 </label>
                 
                 <label htmlFor="password">
                     Password
+
           <div>
             {" "}
             <input
@@ -100,14 +106,12 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
-
           {errState.password.length > 6 ? (
             <p className="error">{errState.password}</p>
           ) : null}
         </label>
-       
 
-          <button
+        <button
           type="submit"
           id="submit"
           name="submit"
@@ -115,9 +119,7 @@ export default function LoginForm() {
         >
           Submit
         </button>
-
-            </ul>
-        </form>
-    )
-
+      </ul>
+    </form>
+  );
 }
