@@ -9,19 +9,19 @@ import axios from "axios";
 
 
 const formSchema = yup.object().shape({
-      userName: yup.string().required("user name required"),
+      username: yup.string().required("user name required"),
     password: yup.string().min(5, 'password needs to be more than 5 characters long'),
 })
 
 export default function LoginForm() {
     const [userState, setUserState] = useState({
-        userName: '',
+        username: '',
         password: '',
     })
 
 
     const [errState, setErrState] = useState({
-        userName: '',
+        username: '',
         password: '',
     })
     
@@ -73,21 +73,17 @@ export default function LoginForm() {
         <form onSubmit={formSubmit}>
             <ul>
                 
- <label htmlFor="userName">User Name
+ <label htmlFor="username">User Name
           <div>
             <input
-              id="userName"
-              type="userName"
-              name="userName"
+              id="username"
+              type="username"
+              name="username"
               placeholder="User Name"
-              value={userState.userName}
+              value={userState.username}
               onChange={inputChange}
             />
           </div>
-
-                              {errState.userName.length > 0? (
-            <p className="error">{errState.userName}</p>
-                    ) : null}
                     
                 </label>
                 
