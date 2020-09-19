@@ -1,9 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
-import axios from "axios";
 import { Link, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import {axiosWithAuth} from './utils/axiosWithAuth'
 import "./App.css";
 
 export const RecipeContext = createContext();
@@ -12,8 +12,8 @@ function App() {
   const [recipes, setRecipes] = useState([]); // Will use whatever data we pull in from the get request here.
 
   const getRecipes = () => {
-    axios
-      .get("")
+    axiosWithAuth()
+      .get("/api/recipes")
       .then((res) => setRecipes(res.data))
       .catch((err) => console.log(err));
   };
