@@ -8,35 +8,30 @@ import * as yup from "yup";
 import axios from "axios";
 
 const formSchema = yup.object().shape({
-  email: yup
-    .string("@")
-    .email("Valid Email needed")
-    .required("must include email"),
-  password: yup
-    .string()
-    .min(5, "password needs to be more than 5 characters long"),
-});
+      username: yup.string().required("user name required"),
+    password: yup.string().min(5, 'password needs to be more than 5 characters long'),
+})
 
 export default function LoginForm() {
-  const history = useHistory()
-  const [userState, setUserState] = useState({
-    email: "",
-    password: "",
-  });
+    const [userState, setUserState] = useState({
+        username: '',
+        password: '',
+    })
 
-  const [errState, setErrState] = useState({
-    email: "",
-    password: "",
-  });
 
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  useEffect(() => {
-    formSchema.isValid(userState).then((valid) => {
-      setButtonDisabled(valid);
-    });
-  }, [userState]);
+    const [errState, setErrState] = useState({
+        username: '',
+        password: '',
+    })
+    
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+    useEffect(() => {
+        formSchema.isValid(userState).then((valid) => {
+            setButtonDisabled(valid);
+        })
+    }, [userState])
 
-  const validate = (e) => {
+ const validate = (e) => {
     let value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     yup
@@ -76,29 +71,30 @@ export default function LoginForm() {
       }))
       .catch((err) => console.log(err));
   };
+    
+    return (
+        <form onSubmit={formSubmit}>
+            <ul>
+                
+ <label htmlFor="username">User Name
 
-  return (
-    <form onSubmit={formSubmit}>
-      <ul>
-        <label htmlFor="email">
-          Email
           <div>
             <input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={userState.email}
+              id="username"
+              type="username"
+              name="username"
+              placeholder="User Name"
+              value={userState.username}
               onChange={inputChange}
             />
           </div>
-          {errState.email.length > 0 ? (
-            <p className="error">{errState.email}</p>
-          ) : null}
-        </label>
 
-        <label htmlFor="password">
-          Password
+                    
+                </label>
+                
+                <label htmlFor="password">
+                    Password
+
           <div>
             {" "}
             <input
