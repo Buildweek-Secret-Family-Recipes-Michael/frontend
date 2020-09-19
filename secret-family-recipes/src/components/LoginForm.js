@@ -7,31 +7,35 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
+
+// validation
 const formSchema = yup.object().shape({
-      username: yup.string().required("user name required"),
-    password: yup.string().min(5, 'password needs to be more than 5 characters long'),
-})
+  username: yup.string().required("user name required"),
+  password: yup
+    .string()
+    .min(5, "password needs to be more than 5 characters long"),
+});
 
 export default function LoginForm() {
-    const [userState, setUserState] = useState({
-        username: '',
-        password: '',
-    })
+  const history = useHistory();
+  const [userState, setUserState] = useState({
+    username: "",
+    password: "",
+  });
 
-
-    const [errState, setErrState] = useState({
-        username: '',
-        password: '',
-    })
-    
-    const [buttonDisabled, setButtonDisabled] = useState(true)
-    useEffect(() => {
-        formSchema.isValid(userState).then((valid) => {
-            setButtonDisabled(valid);
-        })
-    }, [userState])
-
- const validate = (e) => {
+  const [errState, setErrState] = useState({
+    username: "",
+    password: "",
+  });
+  //validation ^ 
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  useEffect(() => {
+    formSchema.isValid(userState).then((valid) => {
+      setButtonDisabled(valid);
+    });
+  }, [userState]);
+  // validation ^
+  const validate = (e) => {
     let value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     yup
@@ -50,7 +54,7 @@ export default function LoginForm() {
         });
       });
   };
-
+  // validation ^
   const inputChange = (e) => {
     e.persist();
     validate(e);
@@ -58,26 +62,26 @@ export default function LoginForm() {
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setUserState({ ...userState, [e.target.name]: value });
   };
+  //relates to authentication ^
 
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted for review");
+    console.log("userState", userState);
     axios
-      .post("https://reqres.in/api/users", userState)
-      .then((res => {
-        console.log(res)
-        localStorage.setItem("token", res.data.payload)
-        history.push("/Home")
-      }))
+      .post("https://secret-family-recipes-pt16.herokuapp.com/api/users/login", userState)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/Home");
+      })
       .catch((err) => console.log(err));
   };
-    
-    return (
-        <form onSubmit={formSubmit}>
-            <ul>
-                
- <label htmlFor="username">User Name
 
+  return (
+    <form onSubmit={formSubmit}>
+      <ul>
+        <label htmlFor="username">
+          User Name
           <div>
             <input
               id="username"
@@ -88,13 +92,10 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
+        </label>
 
-                    
-                </label>
-                
-                <label htmlFor="password">
-                    Password
-
+        <label htmlFor="password">
+          Password
           <div>
             {" "}
             <input
