@@ -161,7 +161,11 @@ export default function RegisterForm() {
               />
             </div>
           </label>
-            
+
+                {errState.username.length > 5 ? (
+                <p className="error">{errState.username}</p>
+                ) : null}
+          
           <label htmlFor="validate"> 
             <div>
               Validate Here
