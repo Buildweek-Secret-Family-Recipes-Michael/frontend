@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import {axiosWithAuth} from './utils/axiosWithAuth'
+import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 export const RecipeContext = createContext();
@@ -29,15 +30,15 @@ function App() {
         <p> add your family recipe cards here!</p>
 
         <nav>
-          <Link to="/Home">Home</Link>
+          <Link to="/protected">Home</Link>
           <Link to="/">Login</Link>
           <Link to="/Register">Register Here</Link>
         </nav>
 
         <Switch>
-          <Route path="/Home">
+          <PrivateRoute exact path="/protected" component={Home}>
             <Home />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <LoginForm />
           </Route>

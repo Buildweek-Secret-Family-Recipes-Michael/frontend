@@ -72,7 +72,7 @@ export default function LoginForm() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        history.push("/Home");
+        history.push("/protected");
       })
       .catch((err) => console.log(err));
   };
