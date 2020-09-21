@@ -16,7 +16,9 @@ function App() {
   const getRecipes = () => {
     axiosWithAuth()
       .get("/api/recipes")
-      .then((res) => setRecipes(res.data))
+      .then((res) => {
+        console.log(res.data)
+        setRecipes(res.data)})
       .catch((err) => console.log(err));
   };
 
