@@ -73,9 +73,10 @@ export default function LoginForm() {
         <form onSubmit={formSubmit}>
             <ul>
                 
- <label htmlFor="username">User Name
+ <label className="username" htmlFor="username">User Name
           <div>
-            <input
+              <input
+                 className="inputText"
               id="username"
               type="username"
               name="username"
@@ -88,10 +89,11 @@ export default function LoginForm() {
                 </label>
                 
                 <label htmlFor="password">
-                    Password
+            Password
           <div>
-            {" "}
-            <input
+              
+              <input
+                 className="inputText"
               id="password"
               type="password"
               name="password"

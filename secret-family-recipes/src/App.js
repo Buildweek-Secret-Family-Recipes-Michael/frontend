@@ -10,14 +10,13 @@ function App() {
  return (
     <div className="App">
 <h1>The Secret Family Recipes</h1>
-     <p> add your family recipe cards here!</p>
+     
 
        <nav>
-     
        <Link to="/Home">Home</Link>
        <Link to="/">Login</Link>
        <Link to='/Register'>Register Here</Link>
-</nav>
+      </nav>
   
 
     <Switch>

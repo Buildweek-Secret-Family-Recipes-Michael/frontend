@@ -83,26 +83,32 @@ export default function RegisterForm() {
     
     return (
         <form onSubmit={formSubmit}>
-            <ul>
-            <label htmlFor='name'>Name
+        <ul>
+        
+            <label className="username" htmlFor='name'>Name
                 <div>
-                  <input id='name'
+              <input
+                className="inputText"
+                id='name'
                     type='name'
                     name='name'
                     placeholder='Name here'
                     value={userState.name}
                     onChange={inputChange}
                   />
-                </div>
-
-                {errState.name.length > 6 ? (
+            </div>
+            
+  {errState.name.length > 6 ? (
                 <p className="error">{errState.name}</p>
                 ) : null}
+               
                     
           </label>
               <label htmlFor='lastName'>Last Name
               <div>
-                <input id='lastName'
+              <input 
+                 className="inputText"
+                id='lastName'
                   type='lastName'
                   name='lastName'
                   placeholder='Last Name here'
@@ -115,7 +121,8 @@ export default function RegisterForm() {
           
           <label htmlFor="email">Email
               <div>
-                <input
+              <input
+                 className="inputText"
                   id="email"
                   type="email"
                   name="email"
@@ -133,7 +140,8 @@ export default function RegisterForm() {
                 
           <label htmlFor="password">Password
               <div>
-                <input
+              <input
+                 className="inputText"
                   id="password"
                   type="password"
                   name="password"
@@ -152,6 +160,7 @@ export default function RegisterForm() {
           <label htmlFor="username">User Name
             <div>
               <input
+                 className="inputText"
                 id="username"
                 type="username"
                 name="username"
@@ -170,6 +179,7 @@ export default function RegisterForm() {
             <div>
               Validate Here
               <input
+                
                 type="checkbox"
                 id="terms"
                 name="terms"

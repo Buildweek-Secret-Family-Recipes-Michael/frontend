@@ -8,7 +8,7 @@ function Home(props) {
 
     return (
         <div className="home-page">
-            
+            <p> add your family recipe cards here!</p>
 </div>
     )
         

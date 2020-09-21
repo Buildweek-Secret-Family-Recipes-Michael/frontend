@@ -1,6 +1,40 @@
-.home-page{
-    background-color:blue;
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 60%;
 }
-a{
-    margin: 2rem;
+a {
+  width: 10rem;
+}
+
+.Home,
+.LoginForm,
+.RegisterForm {
+  display: flex;
+  justify-content: center;
+  width: 30rem;
+}
+ul {
+  padding: 0;
+  padding-top: 2rem;
+  width: 30rem;
+  margin: 0 auto;
+}
+
+.username {
+  color: blue;
+}
+.error {
+  color: pink;
+  font-size: 0.2rem;
+}
+.inputText{
+    font-weight: bold;
+ background-image: -webkit-linear-gradient( bottom, pink , darkblue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#email{
+    color:red;
 }
