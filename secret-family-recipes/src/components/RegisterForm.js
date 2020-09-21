@@ -85,7 +85,7 @@ export default function RegisterForm() {
         <form onSubmit={formSubmit}>
         <ul>
         
-            <label className="Labels" htmlFor='name'>Name
+          <section className='formContent'>    <label className="Labels" htmlFor='name'>Name
                 <div>
               <input
                 className="inputText"
@@ -103,8 +103,8 @@ export default function RegisterForm() {
                 ) : null}
                
                     
-          </label>
-          <label
+          </label></section>
+        <section className='formContent'>  <label
             className="Labels" htmlFor='lastName'>Last Name
               <div>
               <input 
@@ -118,9 +118,9 @@ export default function RegisterForm() {
                 />
               </div>
                     
-          </label>
-          
-          <label
+          </label></section>
+        
+          <section className='formContent'>      <label
           className="Labels"   htmlFor="email">Email
               <div>
               <input
@@ -138,9 +138,9 @@ export default function RegisterForm() {
               <p className="error">{errState.email}</p>
               ) : null}
                     
-          </label>
-                
-          <label
+          </label></section>
+    
+                <section className='formContent'>    <label
             className="Labels" htmlFor="password">Password
               <div>
               <input
@@ -158,9 +158,9 @@ export default function RegisterForm() {
               <p className="error">{errState.password}</p>
               ) : null}
             
-          </label>
-          
-          <label
+          </label></section>
+      
+          <section className='formContent'>    <label
           className="Labels"   htmlFor="username">User Name
             <div>
               <input
@@ -177,9 +177,9 @@ export default function RegisterForm() {
 
                 {errState.username.length > 5 ? (
                 <p className="error">{errState.username}</p>
-                ) : null}
-          
-          <label htmlFor="validate"> 
+                ) : null}</section>
+      
+          <section className='formContent'>  <label htmlFor="validate"> 
             <div className='Validate'>
               Validate Here
               <input
@@ -196,7 +196,8 @@ export default function RegisterForm() {
               <p className="error">{errState.terms}</p>
               ) : null}
             
-          </label>
+          </label></section>
+        
           
         <button
           type="submit"
