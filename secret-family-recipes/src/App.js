@@ -3,19 +3,22 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm'
-
 import "./App.css";
+
+
 
 function App() {
  return (
     <div className="App">
-<h1>The Secret Family Recipes</h1>
-     
 
-       <nav>
+     
+     <nav>
+       <h1 className="Title">The Secret Family Recipes</h1>
+       <section className="links">
        <Link to="/Home">Home</Link>
        <Link to="/">Login</Link>
-       <Link to='/Register'>Register Here</Link>
+         <Link to='/Register'>Register Here</Link>
+       </section>
       </nav>
   
 

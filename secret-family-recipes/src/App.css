@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url('https://images.pexels.com/photos/1907227/pexels-photo-1907227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+  height:100vh
 }
 
 .App-logo {

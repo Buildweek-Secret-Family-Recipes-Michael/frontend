@@ -85,7 +85,7 @@ export default function RegisterForm() {
         <form onSubmit={formSubmit}>
         <ul>
         
-            <label className="username" htmlFor='name'>Name
+            <label className="Labels" htmlFor='name'>Name
                 <div>
               <input
                 className="inputText"
@@ -104,7 +104,8 @@ export default function RegisterForm() {
                
                     
           </label>
-              <label htmlFor='lastName'>Last Name
+          <label
+            className="Labels" htmlFor='lastName'>Last Name
               <div>
               <input 
                  className="inputText"
@@ -119,7 +120,8 @@ export default function RegisterForm() {
                     
           </label>
           
-          <label htmlFor="email">Email
+          <label
+          className="Labels"   htmlFor="email">Email
               <div>
               <input
                  className="inputText"
@@ -138,7 +140,8 @@ export default function RegisterForm() {
                     
           </label>
                 
-          <label htmlFor="password">Password
+          <label
+            className="Labels" htmlFor="password">Password
               <div>
               <input
                  className="inputText"
@@ -157,7 +160,8 @@ export default function RegisterForm() {
             
           </label>
           
-          <label htmlFor="username">User Name
+          <label
+          className="Labels"   htmlFor="username">User Name
             <div>
               <input
                  className="inputText"
@@ -176,7 +180,7 @@ export default function RegisterForm() {
                 ) : null}
           
           <label htmlFor="validate"> 
-            <div>
+            <div className='Validate'>
               Validate Here
               <input
                 

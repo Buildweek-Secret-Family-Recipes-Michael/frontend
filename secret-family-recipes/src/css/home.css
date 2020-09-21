@@ -1,11 +1,21 @@
 nav {
+  color: teal;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin: 0 auto;
-  width: 60%;
 }
+
 a {
-  width: 10rem;
+  font-size: 0.4rem;
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  text-align: center;
 }
 
 .Home,
@@ -22,19 +32,37 @@ ul {
   margin: 0 auto;
 }
 
-.username {
-  color: blue;
+.Labels {
+  background-image: -webkit-linear-gradient(
+    top,
+    slateGray 60%,
+    crimson 50%,
+    peachpuff 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .error {
   color: pink;
   font-size: 0.2rem;
 }
-.inputText{
-    font-weight: bold;
- background-image: -webkit-linear-gradient( bottom, pink , darkblue);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.inputText {
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(top, green, pink, blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-#email{
-    color:red;
+#email {
+  color: red;
+}
+
+.Validate {
+  color: lightblue;
+}
+
+#submit {
+  color: pink;
+}
+button {
+  background-color: transparent;
 }
