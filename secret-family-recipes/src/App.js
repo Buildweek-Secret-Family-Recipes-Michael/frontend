@@ -5,6 +5,10 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import AddRecipe from "./components/AddRecipe";
 import {axiosWithAuth} from './utils/axiosWithAuth';
+import PrivateRoute from "./components/PrivateRoute";
+
+
+
 import "./App.css";
 
 export const RecipeContext = createContext();
@@ -12,13 +16,15 @@ export const GetRecipesContext = createContext();
 
 function App() {
   const [recipes, setRecipes] = useState([]); // Will use whatever data we pull in from the get request here.
-
+  console.log(recipes);
   const getRecipes = () => {
     axiosWithAuth()
       .get("/api/recipes")
       .then((res) => {
+
         console.log(res.data)
         setRecipes(res.data)})
+
       .catch((err) => console.log(err));
   };
 
