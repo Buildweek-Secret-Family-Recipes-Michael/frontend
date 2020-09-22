@@ -1,18 +1,22 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import '../css/home.css'
+import React from "react";
+import { useHistory, Link } from "react-router-dom";
+import "../css/home.css";
+import Recipes from "./Recipes";
 
 function Home(props) {
-    const history = useHistory();
-    console.log('history: ', history);
+  const history = useHistory();
+  console.log("history: ", history);
 
-    return (
-        <div className="home-page">
-            <p> add your family recipe cards here!</p>
-</div>
-    )
-        
-    
+
+  return (
+    <div className="home-page">
+
+      <Link to="/AddRecipe">Add A Recipe</Link>
+      <Recipes />
+
+    </div>
+  );
+
 }
 
-export default Home
+export default Home;

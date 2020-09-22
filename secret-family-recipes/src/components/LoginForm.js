@@ -1,38 +1,41 @@
-// This is where the user onboarding form will live. UserForm will authenticate user and push them to main page. 
+// This is where the user onboarding form will live. UserForm will authenticate user and push them to main page.
 
-// Once pushed to the main page, the user can see all recipe cards in database, then they can click on navbar add recipe link to take them to add recipe form page. 
-
+// Once pushed to the main page, the user can see all recipe cards in database, then they can click on navbar add recipe link to take them to add recipe form page.
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
-
+// validation
 const formSchema = yup.object().shape({
-    username: yup.string().required("user name required"),
-    password: yup.string().min(5, 'password needs to be more than 5 characters long'),
-})
+  username: yup.string().required("user name required"),
+  password: yup
+    .string()
+    .min(5, "password needs to be more than 5 characters long"),
+});
+
 
 export default function LoginForm() {
-    const [userState, setUserState] = useState({
-        username: '',
-        password: '',
-    })
+  const history = useHistory();
+  const [userState, setUserState] = useState({
+    username: "",
+    password: "",
+  });
 
-
-    const [errState, setErrState] = useState({
-        username: '',
-        password: '',
-    })
-    
-    const [buttonDisabled, setButtonDisabled] = useState(true)
-    useEffect(() => {
-        formSchema.isValid(userState).then((valid) => {
-            setButtonDisabled(valid);
-        })
-    }, [userState])
-
- const validate = (e) => {
+  const [errState, setErrState] = useState({
+    username: "",
+    password: "",
+  });
+  //validation ^
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  useEffect(() => {
+    formSchema.isValid(userState).then((valid) => {
+      setButtonDisabled(valid);
+    });
+  }, [userState]);
+  // validation ^
+  const validate = (e) => {
     let value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     yup
@@ -51,29 +54,40 @@ export default function LoginForm() {
         });
       });
   };
-
-     const inputChange = (e) => {
+  // validation ^
+  const inputChange = (e) => {
     e.persist();
     validate(e);
     let value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setUserState({ ...userState, [e.target.name]: value });
   };
+  //relates to authentication ^
 
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted for review");
+    console.log("userState", userState);
     axios
-      .post("https://reqres.in/api/users", userState)
-      .then((response) => console.log(response))
+      .post(
+        "https://secret-family-recipes-pt16.herokuapp.com/api/users/login",
+        userState
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/protected");
+
+      })
       .catch((err) => console.log(err));
   };
-    
-    return (
-        <form onSubmit={formSubmit}>
-            <ul>
-                
- <label className="username" htmlFor="username">User Name
+
+
+  return (
+    <form onSubmit={formSubmit}>
+      <ul>
+        <label htmlFor="username">
+          User Name
+
           <div>
               <input
                  className="inputText"
@@ -85,11 +99,12 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
-                    
-                </label>
-                
-                <label htmlFor="password">
-            Password
+
+        </label>
+
+        <label htmlFor="password">
+          Password
+
           <div>
               
               <input
@@ -102,14 +117,12 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
-
           {errState.password.length > 6 ? (
             <p className="error">{errState.password}</p>
           ) : null}
         </label>
-       
 
-          <button
+        <button
           type="submit"
           id="submit"
           name="submit"
@@ -117,9 +130,7 @@ export default function LoginForm() {
         >
           Submit
         </button>
-
-            </ul>
-        </form>
-    )
-
+      </ul>
+    </form>
+  );
 }
