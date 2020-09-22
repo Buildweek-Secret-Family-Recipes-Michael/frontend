@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
-
 // validation
 const formSchema = yup.object().shape({
   username: yup.string().required("user name required"),
@@ -27,7 +26,7 @@ export default function LoginForm() {
     username: "",
     password: "",
   });
-  //validation ^ 
+  //validation ^
   const [buttonDisabled, setButtonDisabled] = useState(true);
   useEffect(() => {
     formSchema.isValid(userState).then((valid) => {
@@ -68,11 +67,15 @@ export default function LoginForm() {
     e.preventDefault();
     console.log("userState", userState);
     axios
-      .post("https://secret-family-recipes-pt16.herokuapp.com/api/users/login", userState)
+      .post(
+        "https://secret-family-recipes-pt16.herokuapp.com/api/users/login",
+        userState
+      )
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         history.push("/protected");
+
       })
       .catch((err) => console.log(err));
   };
