@@ -1,3 +1,4 @@
+
 import React, { useState, createContext, useEffect } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
@@ -10,9 +11,9 @@ import PrivateRoute from "./components/PrivateRoute";
 
 
 import "./App.css";
-
 export const RecipeContext = createContext();
 export const GetRecipesContext = createContext();
+
 
 function App() {
   const [recipes, setRecipes] = useState([]); // Will use whatever data we pull in from the get request here.
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+
       <RecipeContext.Provider value={recipes}>
         <GetRecipesContext.Provider value={ {getRecipes} }>
           <h1>The Secret Family Recipes</h1>

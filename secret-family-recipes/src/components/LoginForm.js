@@ -15,6 +15,7 @@ const formSchema = yup.object().shape({
     .min(5, "password needs to be more than 5 characters long"),
 });
 
+
 export default function LoginForm() {
   const history = useHistory();
   const [userState, setUserState] = useState({
@@ -80,13 +81,16 @@ export default function LoginForm() {
       .catch((err) => console.log(err));
   };
 
+
   return (
     <form onSubmit={formSubmit}>
       <ul>
         <label htmlFor="username">
           User Name
+
           <div>
-            <input
+              <input
+                 className="inputText"
               id="username"
               type="username"
               name="username"
@@ -95,13 +99,16 @@ export default function LoginForm() {
               onChange={inputChange}
             />
           </div>
+
         </label>
 
         <label htmlFor="password">
           Password
+
           <div>
-            {" "}
-            <input
+              
+              <input
+                 className="inputText"
               id="password"
               type="password"
               name="password"

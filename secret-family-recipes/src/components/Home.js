@@ -7,6 +7,7 @@ function Home(props) {
   const history = useHistory();
   console.log("history: ", history);
 
+
   return (
     <div className="home-page">
 
@@ -15,6 +16,7 @@ function Home(props) {
 
     </div>
   );
+
 }
 
 export default Home;
