@@ -3,18 +3,21 @@ import { Link, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import {axiosWithAuth} from './utils/axiosWithAuth'
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 import "./App.css";
 
 export const RecipeContext = createContext();
 
 function App() {
   const [recipes, setRecipes] = useState([]); // Will use whatever data we pull in from the get request here.
-
+  console.log(recipes);
   const getRecipes = () => {
     axiosWithAuth()
       .get("/api/recipes")
-      .then((res) => setRecipes(res.data))
+      .then((res) => {
+        console.log(res.data);
+        setRecipes(res.data);
+      })
       .catch((err) => console.log(err));
   };
 
