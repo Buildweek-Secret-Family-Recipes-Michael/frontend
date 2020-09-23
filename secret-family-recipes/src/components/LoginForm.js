@@ -88,7 +88,7 @@ export default function LoginForm() {
         <label htmlFor="username">
           User Name
 
-          <div>
+          <div className="Form-input">
               <input
                  className="inputText"
               id="username"
@@ -105,8 +105,7 @@ export default function LoginForm() {
         <label htmlFor="password">
           Password
 
-          <div>
-              
+          <div className="Form-input">
               <input
                  className="inputText"
               id="password"

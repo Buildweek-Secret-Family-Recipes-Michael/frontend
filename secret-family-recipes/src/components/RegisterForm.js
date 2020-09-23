@@ -9,32 +9,23 @@ import axios from "axios";
 
 
 const formSchema = yup.object().shape({
-    name: yup.string().min(4, '4 characters minimum for name').required("Name required"),
-    lastName: yup.string().required("Last Name required"),
-    email: yup.string('@').email('Valid Email needed').required('must include email'),
-    password: yup.string().min(5, 'password needs to be more than 5 characters long'),
-    username: yup.string().min(5, "5 characters minimum for your user name").required("user name required"),
-    terms: yup.boolean().oneOf([true], "please validate you are human")
+  username: yup.string(),
+  password: yup.string(),
+    
 })
 
 export default function RegisterForm() {
     const [userState, setUserState] = useState({
-      name: '',
-      lastName:'',
-      email: '',
+      username: '',
       password: '',
-      username:'',
-      terms:false,
+     
     })
 
 
   const [errState, setErrState] = useState({
-    name: '',
-    lastName: '',
-    email: '',
+    username: '',
     password: '',
-    username:'',
-    terms:'',
+  
     })
     
     const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -84,10 +75,11 @@ export default function RegisterForm() {
     return (
         <form onSubmit={formSubmit}>
         <ul>
+
         <section className='formContent'>    
-          <label className="Labels" htmlFor='name'>
-          Name
-                <div>
+          <label className="Labels" htmlFor='username'>
+          User Name
+                <div className="Form-input">
               <input
                 className="inputText"
                 id='name'
@@ -124,46 +116,7 @@ export default function RegisterForm() {
           <section className='formContent'>      <label
           className="Labels"   htmlFor="email">Email
               <div>
-              <input
-                 className="inputText"
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={userState.email}
-                  onChange={inputChange}
-                />
-              </div>
 
-              {errState.email.length > 0? (
-              <p className="error">{errState.email}</p>
-              ) : null}
-                    
-          </label></section>
-    
-                <section className='formContent'>    <label
-            className="Labels" htmlFor="password">Password
-              <div>
-              <input
-                 className="inputText"
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={userState.password}
-                  onChange={inputChange}
-                />
-              </div>
-
-              {errState.password.length > 6 ? (
-              <p className="error">{errState.password}</p>
-              ) : null}
-            
-          </label></section>
-      
-          <section className='formContent'>    <label
-          className="Labels"   htmlFor="username">User Name
-            <div>
               <input
                  className="inputText"
                 id="username"
@@ -175,31 +128,26 @@ export default function RegisterForm() {
               />
             </div>
           </label>
-
-                {errState.username.length > 5 ? (
-                <p className="error">{errState.username}</p>
-                ) : null}</section>
-      
-          <section className='formContent'>  <label htmlFor="validate"> 
-            <div className='Validate'>
-              Validate Here
+          </section>
+          
+          <section className='formContent'>    <label
+            className="Labels" htmlFor="password">Password
+              <div className="Form-input">
               <input
-                
-                type="checkbox"
-                id="terms"
-                name="terms"
-                checked={userState.terms}
-                onChange={inputChange}
-              />
-          </div>
-
-              {errState.terms.length > 1 ? (
-              <p className="error">{errState.terms}</p>
-              ) : null}
+                 className="inputText"
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={userState.password}
+                  onChange={inputChange}
+                />
+              </div>
             
           </label></section>
-        
-          
+      
+    
+      
         <button
           type="submit"
           id="submit"

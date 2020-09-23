@@ -1,0 +1,130 @@
+h1 {
+  font-size: 2.5rem;
+}
+
+nav {
+  width: auto;
+  color: teal;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  align-items: baseline;
+}
+
+a {
+  font-size: 1.8rem;
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+  justify-content:center;
+}
+
+.links {
+  padding-bottom: 2rem;
+  width: 40%;
+  display: flex;
+  text-align: center;
+}
+
+@media (max-width: 1122px) {
+  a {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 860px) {
+  a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  a {
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 622px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+    width: 90%;
+  }
+   a {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 499px) {
+  nav {
+align-items:center;
+  }
+  a {
+   width:90%;
+  }
+}
+
+/*  */
+
+.Home,
+.LoginForm,
+.RegisterForm {
+  display: flex;
+  justify-content: center;
+  width: 20em;
+}
+ul {
+  padding: 0;
+  padding-top: 2rem;
+  width: 20em;
+  margin: 0 auto;
+}
+
+.formContent {
+  padding-top: 1rem;
+}
+.Labels {
+  background-image: -webkit-linear-gradient(
+    top,
+    slateGray 60%,
+    crimson 50%,
+    peachpuff 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.error {
+  color: pink;
+  font-size: 0.2rem;
+}
+.inputText {
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(top, green, pink, blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#email {
+  color: red;
+}
+
+.Validate {
+  color: lightblue;
+}
+
+#submit {
+  color: pink;
+}
+button {
+  background-color: transparent;
+}
