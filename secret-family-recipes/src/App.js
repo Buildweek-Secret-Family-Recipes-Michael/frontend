@@ -24,9 +24,11 @@ function App() {
       .get("/api/recipes")
       .then((res) => {
 
+
         console.log("data from axios:", res)
         setRecipes(res.data.recipes)})
         
+
 
       .catch((err) => console.log(err));
   };
@@ -38,22 +40,25 @@ function App() {
   return (
     <div className="App">
 
+
       <RecipeContext.Provider value={{recipes}}>
-        <GetRecipesContext.Provider value={ {getRecipes} }>
+
+        <GetRecipesContext.Provider value={{getRecipes}}>
          
           <nav>
        <h1 className="Title">The Secret Family Recipes</h1>
        <section className="links">
-       <Link to="/Home">Home</Link>
+       <Link to="/protected">Home</Link>
        <Link to="/">Login</Link>
        <Link to='/Register'>Register Here</Link>
        </section>
       </nav>
 
+
           <Switch>
-            <Route path="/Home">
+            <PrivateRoute exact path="/protected" component={Home}>
               <Home />
-            </Route>
+            </PrivateRoute>
             <Route path="/AddRecipe">
               <AddRecipe />
             </Route>

@@ -75,10 +75,48 @@ export default function RegisterForm() {
     return (
         <form onSubmit={formSubmit}>
         <ul>
+
+        <section className='formContent'>    
+          <label className="Labels" htmlFor='username'>
+          User Name
+                <div className="Form-input">
+              <input
+                className="inputText"
+                id='name'
+                    type='name'
+                    name='name'
+                    placeholder='Name here'
+                    value={userState.name}
+                    onChange={inputChange}
+                  />
+            </div>
+            
+  {errState.name.length > 6 ? (
+                <p className="error">{errState.name}</p>
+                ) : null}
+               
+                    
+          </label></section>
+        <section className='formContent'>  <label
+            className="Labels" htmlFor='lastName'>Last Name
+              <div>
+              <input 
+                 className="inputText"
+                id='lastName'
+                  type='lastName'
+                  name='lastName'
+                  placeholder='Last Name here'
+                  value={userState.lastName}
+                  onChange={inputChange}
+                />
+              </div>
+                    
+          </label></section>
         
-                <section className='formContent'>    <label
-          className="Labels"   htmlFor="username">User Name
-            <div className="Form-input">
+          <section className='formContent'>      <label
+          className="Labels"   htmlFor="email">Email
+              <div>
+
               <input
                  className="inputText"
                 id="username"
