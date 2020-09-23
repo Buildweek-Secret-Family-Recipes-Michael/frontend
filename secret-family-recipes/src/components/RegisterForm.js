@@ -84,8 +84,9 @@ export default function RegisterForm() {
     return (
         <form onSubmit={formSubmit}>
         <ul>
-        
-          <section className='formContent'>    <label className="Labels" htmlFor='name'>Name
+        <section className='formContent'>    
+          <label className="Labels" htmlFor='name'>
+          Name
                 <div>
               <input
                 className="inputText"

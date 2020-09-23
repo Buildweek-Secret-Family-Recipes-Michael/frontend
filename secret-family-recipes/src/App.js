@@ -23,9 +23,11 @@ function App() {
       .get("/api/recipes")
       .then((res) => {
 
+
         console.log("data from axios:", res)
         setRecipes(res.data.recipes)})
         
+
 
       .catch((err) => console.log(err));
   };
@@ -37,8 +39,9 @@ function App() {
   return (
     <div className="App">
 
+
       <RecipeContext.Provider value={{recipes}}>
-        <GetRecipesContext.Provider value={ {getRecipes} }>
+        <GetRecipesContext.Provider value={{getRecipes}}>
           <h1>The Secret Family Recipes</h1>
 
           <nav className="links">
