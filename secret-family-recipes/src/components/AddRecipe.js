@@ -1,9 +1,8 @@
-// This is where the add recipe form will live (in infamy).
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { GetRecipesContext } from "../App";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-// for added ingred, instr rendered as list see todo assignments
+
 const initialRecipeFormInfo = {
     name: "",
     category: "Breakfast",
@@ -23,40 +22,32 @@ const AddRecipe = () => {
     const [instruction, setInstruction] = useState("");
 
     const { push } = useHistory();
-    // const getRecipes = useContext(GetRecipesContext).getRecipes;
+
     const { getRecipes } = useContext(GetRecipesContext);
-    // console.log(recipeInfo.ingredients);
+     // const getRecipes = useContext(GetRecipesContext).getRecipes;
 
-/////////////////////////////////////////////////////
+/////////////INGREDIENT-STATE SETTERS//////////////////
 
-    // ingredientName state-setting change-handler
     const handleIngredientNameInput = (e) => {
-        console.log("asdf");
         setIngredientName(e.target.value);
     };
 
-    // ingredientAmount state-setting change-handler
     const handleIngredientAmountInput = (e) => {
         setIngredientAmount(e.target.value);
     };
 
-//////////////////////////////////////////////////
+////////////INSTRUCTION-STATE SETTERS//////////////////
 
-     // ingredientName state-setting change-handler
      const handleInstructionStepNumInput = (e) => {
         setInstructionStepNum(e.target.value);
     };
 
-    // ingredientAmount state-setting change-handler
     const handleInstructionInstructionInput = (e) => {
         setInstruction(e.target.value);
     };
 
-//////////////////////////////////////////////////
+////////////NAME- AND CATEGORY-STATE SETTER//////////////
 
-
-    // This handleChanges works in the absence of ingredients/instructions inputs
-    // (i.e. the form is able to post name/category to the database).
     const handleChanges = (e) => {
         setRecipeInfo({
             ...recipeInfo,
@@ -64,9 +55,9 @@ const AddRecipe = () => {
         });
     };
 
-    // to be triggered by onClick on "Add New Ingredient" button 
+    // set to "Add New Ingredient" button onClick
     const handleIngredientInput = (e) => {
-        console.log("handleIngredient called");
+        console.log("handleIngredientInput called");
         e.preventDefault();
         setRecipeInfo({
             ...recipeInfo,
@@ -78,8 +69,10 @@ const AddRecipe = () => {
         setIngredientName("");
         setIngredientAmount("");
     };
-    // to be triggered by onClick on "Add New Instruction" button 
+    
+    // set to "Add New Instruction" button onClick
     const handleInstructionInput = (e) => {
+        console.log("handleInstructionInput called");
         e.preventDefault();
         setRecipeInfo({
             ...recipeInfo,
