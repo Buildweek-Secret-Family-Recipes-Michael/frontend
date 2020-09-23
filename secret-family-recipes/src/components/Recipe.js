@@ -17,8 +17,8 @@ const Recipe = (props) => (
           size="mini"
           src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
         />
-        <Card.Header>{props.recipe.name}</Card.Header>
-        <Card.Meta>Friends of Elliot</Card.Meta>
+        <Card.Header>Recipe Title: {props.recipe.name}</Card.Header>
+<Card.Meta>Recipe Source: {props.recipe.source}</Card.Meta>
         <Card.Description>
           Category: <strong>{props.recipe.category}</strong>
         </Card.Description>
@@ -34,6 +34,19 @@ const Recipe = (props) => (
         ) : (
           <Card.Description>There are no ingredients</Card.Description>
         )}
+        {props.recipe.instructions.length > 0 ? (
+          props.recipe.instructions.map((inst) => {
+            console.log(inst);
+            return (
+              <Card.Description>
+                Instructions: <strong>{inst.stepNum} {inst.name}</strong>
+              </Card.Description>
+            );
+          })
+        ) : (
+          <Card.Description>There are no ingredients</Card.Description>
+        )}
+
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
@@ -51,14 +64,4 @@ const Recipe = (props) => (
 
 export default Recipe;
 
-// import React from 'react'
 
-// const Recipe = props => {
-//     return(
-//         <div className="Recipe">
-
-//         </div>
-//     )
-// }
-
-// export default Recipe
