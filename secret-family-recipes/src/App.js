@@ -8,9 +8,10 @@ import AddRecipe from "./components/AddRecipe";
 import {axiosWithAuth} from './utils/axiosWithAuth';
 import PrivateRoute from "./components/PrivateRoute";
 
-
-
 import "./App.css";
+import "./css/main.css";
+import "./css/home.css";
+import "./css/input.css";
 export const RecipeContext = createContext();
 export const GetRecipesContext = createContext();
 
@@ -39,13 +40,15 @@ function App() {
 
       <RecipeContext.Provider value={{recipes}}>
         <GetRecipesContext.Provider value={ {getRecipes} }>
-          <h1>The Secret Family Recipes</h1>
-
-          <nav className="links">
-            <Link to="/Home">Home</Link>
-            <Link to="/">Login</Link>
-            <Link to="/Register">Register Here</Link>
-          </nav>
+         
+          <nav>
+       <h1 className="Title">The Secret Family Recipes</h1>
+       <section className="links">
+       <Link to="/Home">Home</Link>
+       <Link to="/">Login</Link>
+       <Link to='/Register'>Register Here</Link>
+       </section>
+      </nav>
 
           <Switch>
             <Route path="/Home">

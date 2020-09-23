@@ -78,7 +78,7 @@ export default function RegisterForm() {
         
                 <section className='formContent'>    <label
           className="Labels"   htmlFor="username">User Name
-            <div>
+            <div className="Form-input">
               <input
                  className="inputText"
                 id="username"
@@ -94,7 +94,7 @@ export default function RegisterForm() {
           
           <section className='formContent'>    <label
             className="Labels" htmlFor="password">Password
-              <div>
+              <div className="Form-input">
               <input
                  className="inputText"
                   id="password"
