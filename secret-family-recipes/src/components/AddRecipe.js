@@ -32,36 +32,24 @@ const AddRecipe = () => {
     // ingredientName state-setting change-handler
     const handleIngredientNameInput = (e) => {
         console.log("asdf");
-        setIngredientName({
-            ...ingredientName,
-            [e.target.name]: e.target.value
-        });
+        setIngredientName(e.target.value);
     };
 
     // ingredientAmount state-setting change-handler
     const handleIngredientAmountInput = (e) => {
-        setIngredientAmount({
-            ...ingredientAmount,
-            [e.target.name]: e.target.value
-        });
+        setIngredientAmount(e.target.value);
     };
 
 //////////////////////////////////////////////////
 
      // ingredientName state-setting change-handler
      const handleInstructionStepNumInput = (e) => {
-        setInstructionStepNum({
-            ...instructionStepNum,
-            [e.target.name]: e.target.value
-        });
+        setInstructionStepNum(e.target.value);
     };
 
     // ingredientAmount state-setting change-handler
     const handleInstructionInstructionInput = (e) => {
-        setInstruction({
-            ...instruction,
-            [e.target.name]: e.target.value
-        });
+        setInstruction(e.target.value);
     };
 
 //////////////////////////////////////////////////
@@ -84,9 +72,11 @@ const AddRecipe = () => {
             ...recipeInfo,
             ingredients: [
                 ...recipeInfo.ingredients, 
-                {amount: ingredientName, name: ingredientAmount}
+                {name: ingredientName, amount: ingredientAmount}
             ]
         });
+        setIngredientName("");
+        setIngredientAmount("");
     };
     // to be triggered by onClick on "Add New Instruction" button 
     const handleInstructionInput = (e) => {
@@ -98,6 +88,8 @@ const AddRecipe = () => {
                 {stepNum: instructionStepNum, name: instruction}
             ]
         });
+        setInstructionStepNum("");
+        setInstruction("");
     };
 
     // to post the final added recipe
@@ -129,7 +121,6 @@ const AddRecipe = () => {
 
                 <div className="add-form-wrapper">
                     <h2>Recipe Name:</h2>
-                    {/* This input, apparently, works. */}
                     <input 
                         type="text"
                         name="name"
@@ -145,7 +136,6 @@ const AddRecipe = () => {
 
                 <div className="add-form-wrapper">
                     <h2>Recipe Category:</h2>
-                    {/* This dropdown, apparently, works. */}
                     <select
                         name="category"
                         onChange={handleChanges}
@@ -166,7 +156,7 @@ const AddRecipe = () => {
                         name="ingredientAmount"
                         onChange={handleIngredientAmountInput}
                         placeholder="ingredient amount"
-                        value={recipeInfo.ingredients.amount}
+                        value={ingredientAmount}
                     />
 
                 <h2>Ingredient Name:</h2>
@@ -176,11 +166,11 @@ const AddRecipe = () => {
                         name="ingredientName"
                         onChange={handleIngredientNameInput}
                         placeholder="ingredient name"
-                        value={recipeInfo.ingredients.name}
+                        value={ingredientName}
                     />
 
                 </div>
-                {/* intended to set <ingredients: [{ amount: "", name: "" }]> to state */}
+                {/* intended to set <ingredients: []> to state */}
                 <button onClick={handleIngredientInput}>Add New Ingredient</button>
 
                 <div className="add-form-wrapper">
@@ -189,10 +179,9 @@ const AddRecipe = () => {
                     <input
                         type="text"
                         name="instructionStepNum"
-                        // change onChange to a state-setting handleChanges?
                         onChange={handleInstructionStepNumInput}
                         placeholder="step number"
-                        value={recipeInfo.instructions.StepNum}
+                        value={instructionStepNum}
                     />
 
                     <h2>Step Procedure:</h2>
@@ -200,14 +189,13 @@ const AddRecipe = () => {
                     <input
                         type="text"
                         name="instruction"
-                        // change onChange to a state-setting handleChanges?
                         onChange={handleInstructionInstructionInput}
                         placeholder="instruction"
-                        value={recipeInfo.instructions.instructions}
+                        value={instruction}
                     />
 
                 </div>
-                {/* intended to set <instructions: [{ stepNum: "", instructions: "" }]> to state */}
+                {/* intended to set <instructions: []> to state */}
                 <button onClick={handleInstructionInput}>Add New Instruction</button>
 
                 <hr />
