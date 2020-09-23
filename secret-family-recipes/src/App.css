@@ -38,3 +38,20 @@
     transform: rotate(360deg);
   }
 }
+
+.add-recipe-form {
+  background-color: #78926b;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.add-recipe-form > button {
+  background-color: yellow;
+}
+
+.add-form-wrapper {
+  border: 2px solid;
+  border-radius: 5px;
+  margin: 2.5% 25%;
+}

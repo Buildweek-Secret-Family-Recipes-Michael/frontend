@@ -24,7 +24,7 @@ function App() {
       .then((res) => {
 
         console.log(res.data)
-        setRecipes(res.data)})
+        setRecipes(res.data.recipes)})
 
       .catch((err) => console.log(err));
   };
@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
 
-      <RecipeContext.Provider value={recipes}>
+      <RecipeContext.Provider value={ {recipes} }>
         <GetRecipesContext.Provider value={ {getRecipes} }>
           <h1>The Secret Family Recipes</h1>
 
