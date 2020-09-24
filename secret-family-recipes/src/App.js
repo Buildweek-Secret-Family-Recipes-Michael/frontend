@@ -7,6 +7,7 @@ import RegisterForm from "./components/RegisterForm";
 import AddRecipe from "./components/AddRecipe";
 import {axiosWithAuth} from './utils/axiosWithAuth';
 import PrivateRoute from "./components/PrivateRoute";
+import UpdateRecipe from "./components/UpdateRecipe";
 
 import "./App.css";
 import "./css/main.css";
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
 
 
-      <RecipeContext.Provider value={{recipes}}>
+      <RecipeContext.Provider value={{recipes, setRecipes} }>
 
         <GetRecipesContext.Provider value={{getRecipes}}>
          
@@ -67,6 +68,9 @@ function App() {
             </Route>
             <Route exact path="/Register">
               <RegisterForm />
+            </Route>
+            <Route path="/UpdateRecipe/:id">
+              <UpdateRecipe />
             </Route>
           </Switch>
         </GetRecipesContext.Provider>

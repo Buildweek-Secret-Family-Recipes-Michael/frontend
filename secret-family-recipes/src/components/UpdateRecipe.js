@@ -7,6 +7,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 // test render in with a Link in another file...
 const initialRecipeInfo = {
     name: "",
+    source: "",
     category: "Breakfast",
     ingredientAmount: "",
     ingredientName: "",
@@ -32,10 +33,13 @@ const EditRecipe = () => {
 
     // set component state to selected recipe
     useEffect( () => {
+      console.log(id);
       axiosWithAuth()
-        .get(`/api/recipe/${id}`)
+        .get(`/api/recipes/${id}`)
         .then( (res) => {
-          setRecipeInfo(res.data.recipes)
+          console.log("get from update", res.data);
+          // Check on appropriate response to set to state!
+          setRecipeInfo(res.data)
         })
         .catch( (err) => console.log(err));
     }, [id]);
@@ -105,6 +109,7 @@ const EditRecipe = () => {
         console.log("from handleSubmit", recipeInfo.ingredients);
         const newRecipe = {
             name: recipeInfo.name, 
+            source: recipeInfo.source,
             category: recipeInfo.category, 
             ingredients: recipeInfo.ingredients,
             instructions: recipeInfo.instructions
@@ -112,7 +117,7 @@ const EditRecipe = () => {
         // console.log("newRecipe", newRecipe);
         e.preventDefault();
         axiosWithAuth()  
-            .put("/api/recipes", newRecipe)
+            .put(`/api/recipes/${id}`, newRecipe)
             .then( (res) => {
                 console.log(res.data)
                 getRecipes();
@@ -124,7 +129,7 @@ const EditRecipe = () => {
     return (
         <div>
             <form className="add-recipe-form" onSubmit={handleSubmit}>
-                <h1>Add A Recipe Here:</h1>
+                <h1>Update A Recipe Here:</h1>
 
                 <div className="add-form-wrapper">
                     <h2>Recipe Name:</h2>
@@ -138,7 +143,14 @@ const EditRecipe = () => {
                 </div>
 
                 <div className="add-form-wrapper">
-                    <h2>Recipe Source: </h2>
+                    <h2>Recipe source:</h2>
+                    <input 
+                        type="text"
+                        name="source"
+                        onChange={handleChanges}
+                        placeholder="Source"
+                        value={recipeInfo.source}
+                    />
                 </div>
 
                 <div className="add-form-wrapper">
@@ -154,6 +166,12 @@ const EditRecipe = () => {
                         <option value="category: dessert">Dessert</option>
                     </select>
                 </div>
+
+                {/*
+                  {recipeInfo.ingredients.map((ingredient) => {
+                    return(<div>{ingredient.name} {ingredient.amount}</div>)
+                    };
+                  */}
 
                 <div className="add-form-wrapper">
                 <h2>Ingredient Amount:</h2>

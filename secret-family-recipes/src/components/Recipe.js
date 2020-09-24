@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext }  from "react";
+import {EditRecipe} from "./UpdateRecipe";
+import { useHistory } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { RecipeContext } from "../App";
 
 // NOTES:
 // 1. Recipe Title can go in Card.Header
@@ -8,7 +12,11 @@ import { Button, Card, Image } from "semantic-ui-react";
 // 4. The two buttons "Approve" and "Decline" can be converted to "Update" and "Delete" so that we can pass down the update and delete functions to this card.
 // 5. Props need to be passed in to the function parentheses to bring data in from Recipes.js.
 
-const Recipe = (props) => (
+const Recipe = (props) => {
+  const { push } = useHistory();
+  const { setRecipes } = useContext(RecipeContext);
+
+    return (
   <Card.Group>
     <Card>
       <Card.Content>
@@ -50,10 +58,22 @@ const Recipe = (props) => (
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green">
+          <Button basic color="green" onClick={() => push(`/UpdateRecipe/${props.recipe.id}`)} >
             Edit
           </Button>
-          <Button basic color="red">
+          <Button basic color="red" onClick={() => {
+            axiosWithAuth()
+              .delete(`/api/recipes/${props.recipe.id}`)
+              .then( (res) => {
+                axiosWithAuth()
+                  .get("/api/recipes")
+                  .then( (res) => {
+                    setRecipes(res.data.recipes)
+                  })
+                  .catch(console.log)
+              })
+              .catch(console.log)
+          }}>
             Delete
           </Button>
         </div>
@@ -61,7 +81,7 @@ const Recipe = (props) => (
     </Card>
   </Card.Group>
 );
-
+};
 export default Recipe;
 
 
