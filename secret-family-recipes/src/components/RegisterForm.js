@@ -91,7 +91,7 @@ export default function RegisterForm() {
                   />
             </div>
             
-  {errState.name.length > 6 ? (
+  {errState.username.length > 6 ? (
                 <p className="error">{errState.name}</p>
                 ) : null}
                
