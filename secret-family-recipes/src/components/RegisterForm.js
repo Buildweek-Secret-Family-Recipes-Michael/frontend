@@ -59,12 +59,14 @@ export default function RegisterForm() {
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   };
-  return (
-    <form onSubmit={formSubmit}>
-      <ul>
-        <section className="formContent">
-          {" "}
-          <label className="Labels" htmlFor="username">
+
+    return (
+        <form onSubmit={formSubmit}>
+        <ul>
+
+        <section className='formContent'>    
+          <label className="Labels"   htmlFor="username">
+
             User Name
             <div className="Form-input">
               <input
