@@ -1,4 +1,3 @@
-
 import React, { useContext }  from "react";
 import {EditRecipe} from "./UpdateRecipe";
 import { useHistory } from "react-router-dom";
@@ -6,11 +5,12 @@ import { Button, Card, Image } from "semantic-ui-react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { RecipeContext } from "../App";
 
-
-const Recipe = (props) => {
-  const [recipe, setRecipe] = useState(null);
-  const { push } = useHistory();
-  const params = useParams();
+// NOTES:
+// 1. Recipe Title can go in Card.Header
+// 2. Recipe Source can go in Card.Meta
+// 3. Recipe Ingredients, Instructions, and Category can have there own Card.Description sections.
+// 4. The two buttons "Approve" and "Decline" can be converted to "Update" and "Delete" so that we can pass down the update and delete functions to this card.
+// 5. Props need to be passed in to the function parentheses to bring data in from Recipes.js.
 
 const Recipe = (props) => {
   const { push } = useHistory();
@@ -83,6 +83,5 @@ const Recipe = (props) => {
 );
 };
 export default Recipe;
-
 
 
