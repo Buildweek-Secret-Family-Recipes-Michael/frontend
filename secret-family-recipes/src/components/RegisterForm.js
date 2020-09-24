@@ -6,26 +6,23 @@ import axios from "axios";
 const formSchema = yup.object().shape({
   username: yup.string(),
   password: yup.string(),
-
-})
+});
 export default function RegisterForm() {
-    const [userState, setUserState] = useState({
-      username: '',
-      password: '',
-
-    })
+  const [userState, setUserState] = useState({
+    username: "",
+    password: "",
+  });
   const [errState, setErrState] = useState({
-    username: '',
-    password: '',
-
-    })
-    const [buttonDisabled, setButtonDisabled] = useState(true)
-    useEffect(() => {
-        formSchema.isValid(userState).then((valid) => {
-            setButtonDisabled(valid);
-        })
-    }, [userState])
- const validate = (e) => {
+    username: "",
+    password: "",
+  });
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  useEffect(() => {
+    formSchema.isValid(userState).then((valid) => {
+      setButtonDisabled(valid);
+    });
+  }, [userState]);
+  const validate = (e) => {
     let value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     yup
@@ -43,8 +40,8 @@ export default function RegisterForm() {
           [e.target.name]: err.errors[0],
         });
       });
- };
-     const inputChange = (e) => {
+  };
+  const inputChange = (e) => {
     e.persist();
     validate(e);
     let value =
@@ -55,20 +52,23 @@ export default function RegisterForm() {
     e.preventDefault();
     console.log("form submitted for review");
     axios
-      .post("https://reqres.in/api/users", userState)
+      .post(
+        "https://secret-family-recipes-pt16.herokuapp.com/api/users/register",
+        userState
+      )
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   };
-    return (
-        <form onSubmit={formSubmit}>
-        <ul>
-
-                <section className='formContent'>    <label
-          className="Labels"   htmlFor="username">User Name
+  return (
+    <form onSubmit={formSubmit}>
+      <ul>
+        <section className="formContent">
+          {" "}
+          <label className="Labels" htmlFor="username">
+            User Name
             <div className="Form-input">
-
               <input
-                 className="inputText"
+                className="inputText"
                 id="username"
                 type="username"
                 name="username"
@@ -78,24 +78,25 @@ export default function RegisterForm() {
               />
             </div>
           </label>
-          </section>
+        </section>
 
-
-          <section className='formContent'>    <label
-            className="Labels" htmlFor="password">Password
-              <div className="Form-input">
+        <section className="formContent">
+          {" "}
+          <label className="Labels" htmlFor="password">
+            Password
+            <div className="Form-input">
               <input
-                 className="inputText"
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={userState.password}
-                  onChange={inputChange}
-                />
-              </div>
-
-          </label></section>
+                className="inputText"
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={userState.password}
+                onChange={inputChange}
+              />
+            </div>
+          </label>
+        </section>
 
         <button
           type="submit"
@@ -105,7 +106,7 @@ export default function RegisterForm() {
         >
           Submit
         </button>
-          </ul>
-        </form>
-    )
+      </ul>
+    </form>
+  );
 }
