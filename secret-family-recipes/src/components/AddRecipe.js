@@ -5,6 +5,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialRecipeFormInfo = {
     name: "",
+    source: "",
     category: "Breakfast",
     ingredientAmount: "",
     ingredientName: "",
@@ -46,7 +47,7 @@ const AddRecipe = () => {
         setInstruction(e.target.value);
     };
 
-////////////NAME- AND CATEGORY-STATE SETTER//////////////
+////////////NAME-, SOURCE-, AND CATEGORY-STATE SETTER//////////////
 
     const handleChanges = (e) => {
         setRecipeInfo({
@@ -91,6 +92,7 @@ const AddRecipe = () => {
         console.log("from handleSubmit", recipeInfo.ingredients);
         const newRecipe = {
             name: recipeInfo.name, 
+            source: recipeInfo.source,
             category: recipeInfo.category, 
             ingredients: recipeInfo.ingredients,
             instructions: recipeInfo.instructions
@@ -102,7 +104,7 @@ const AddRecipe = () => {
             .then( (res) => {
                 console.log(res.data)
                 getRecipes();
-                push("/Home");
+                push("/protected");
             })
             .catch( (err) => console.log(err));
     };
@@ -124,7 +126,14 @@ const AddRecipe = () => {
                 </div>
 
                 <div className="add-form-wrapper">
-                    <h2>Recipe Source: </h2>
+                    <h2>Recipe Source:</h2>
+                    <input 
+                        type="text"
+                        name="source"
+                        onChange={handleChanges}
+                        placeholder="Source"
+                        value={recipeInfo.source}
+                    />
                 </div>
 
                 <div className="add-form-wrapper">
