@@ -104,7 +104,7 @@ const AddRecipe = () => {
             .then( (res) => {
                 console.log(res.data)
                 getRecipes();
-                push("/Home");
+                push("/protected");
             })
             .catch( (err) => console.log(err));
     };
