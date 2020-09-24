@@ -1,56 +1,104 @@
-// This is where the add recipe form will live. 
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { GetRecipesContext } from "../App";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const initialRecipeInfo = {
+const initialRecipeFormInfo = {
     name: "",
-    category: "",
-    ingredients: [{
-        amount: "",
-        name: ""
-    }],
-    instructions: [{
-        stepNum: "",
-        name: ""
-    }],
+    category: "Breakfast",
+    ingredientAmount: "",
+    ingredientName: "",
+    instructionStepNum: "",
+    instruction: "",
+    ingredients: [],
+    instructions: []
 };
 
 const AddRecipe = () => {
-    const [recipeInfo, setRecipeInfo] = useState(initialRecipeInfo);
-    const { push } = useHistory();
-    // useContext method (see Context API guided-project Siblings.js lines 1, 2, & 6)
-    // version 1: dot notation 
-    // const getRecipes = useContext(GetRecipesContext).getRecipes;
-    // version 2: destructured object
-    const { getRecipes } = useContext(GetRecipesContext);
+    const [recipeInfo, setRecipeInfo] = useState(initialRecipeFormInfo);
+    const [ingredientAmount, setIngredientAmount] = useState("");
+    const [ingredientName, setIngredientName] = useState("");
+    const [instructionStepNum, setInstructionStepNum] = useState("");
+    const [instruction, setInstruction] = useState("");
 
-    const handleChanges = (e) => {
-        if (e.target.name === "ingredients") {
-            setRecipeInfo({
-                ...recipeInfo,
-                // ???
-                ingredients: e.target.name.value
-            });
-        } else if (e.target.name === "instructions") {
-            setRecipeInfo({
-                ...recipeInfo,
-                // ???
-                instructions: e.target.name.value
-            });
-        } else {
-            setRecipeInfo({
-                ...recipeInfo,
-                [e.target.name]: e.target.value
-            });
-        };
+    const { push } = useHistory();
+
+    const { getRecipes } = useContext(GetRecipesContext);
+     // const getRecipes = useContext(GetRecipesContext).getRecipes;
+
+/////////////INGREDIENT-STATE SETTERS//////////////////
+
+    const handleIngredientNameInput = (e) => {
+        setIngredientName(e.target.value);
     };
 
+    const handleIngredientAmountInput = (e) => {
+        setIngredientAmount(e.target.value);
+    };
+
+////////////INSTRUCTION-STATE SETTERS//////////////////
+
+     const handleInstructionStepNumInput = (e) => {
+        setInstructionStepNum(e.target.value);
+    };
+
+    const handleInstructionInstructionInput = (e) => {
+        setInstruction(e.target.value);
+    };
+
+////////////NAME- AND CATEGORY-STATE SETTER//////////////
+
+    const handleChanges = (e) => {
+        setRecipeInfo({
+            ...recipeInfo,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // set to "Add New Ingredient" button onClick
+    const handleIngredientInput = (e) => {
+        console.log("handleIngredientInput called");
+        e.preventDefault();
+        setRecipeInfo({
+            ...recipeInfo,
+            ingredients: [
+                ...recipeInfo.ingredients, 
+                {name: ingredientName, amount: ingredientAmount}
+            ]
+        });
+        setIngredientName("");
+        setIngredientAmount("");
+    };
+    
+    // set to "Add New Instruction" button onClick
+    const handleInstructionInput = (e) => {
+        console.log("handleInstructionInput called");
+        e.preventDefault();
+        setRecipeInfo({
+            ...recipeInfo,
+            instructions: [
+                ...recipeInfo.instructions, 
+                {stepNum: instructionStepNum, name: instruction}
+            ]
+        });
+        setInstructionStepNum("");
+        setInstruction("");
+    };
+
+    // to post the final added recipe
+    // (with ingredients and instructions arrays)
     const handleSubmit = (e) => {
+        console.log("from handleSubmit", recipeInfo.ingredients);
+        const newRecipe = {
+            name: recipeInfo.name, 
+            category: recipeInfo.category, 
+            ingredients: recipeInfo.ingredients,
+            instructions: recipeInfo.instructions
+        }
+        // console.log("newRecipe", newRecipe);
         e.preventDefault();
         axiosWithAuth()  
-            .post("https://secret-family-recipes-pt16.herokuapp.com/api/recipes", recipeInfo)
+            .post("/api/recipes", newRecipe)
             .then( (res) => {
                 console.log(res.data)
                 getRecipes();
@@ -61,25 +109,28 @@ const AddRecipe = () => {
 
     return (
         <div>
-            <h1>Add A Recipe Here:</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">
+            <form className="add-recipe-form" onSubmit={handleSubmit}>
+                <h1>Add A Recipe Here:</h1>
+
+                <div className="add-form-wrapper">
                     <h2>Recipe Name:</h2>
                     <input 
                         type="text"
                         name="name"
-                        id="name"
                         onChange={handleChanges}
                         placeholder="Name"
                         value={recipeInfo.name}
                     />
-                </label>
+                </div>
 
-                <label htmlFor="category">
+                <div className="add-form-wrapper">
+                    <h2>Recipe Source: </h2>
+                </div>
+
+                <div className="add-form-wrapper">
                     <h2>Recipe Category:</h2>
                     <select
                         name="category"
-                        id="category"
                         onChange={handleChanges}
                         value={recipeInfo.category}
                     >
@@ -88,39 +139,63 @@ const AddRecipe = () => {
                         <option value="category: dinner">Dinner</option>
                         <option value="category: dessert">Dessert</option>
                     </select>
-                </label>
-
-                <label htmlFor="ingredients">
-                    <h2>Ingredients:</h2>
-                    <input
-                        type="text"
-                        name="ingredients"
-                        id="ingredients"
-                        onChange={handleChanges}
-                        placeholder="Ingredients"
-                        value={recipeInfo.ingredients}
-                    />
-                </label>
-
-                <label htmlFor="instructions">
-                    <h2>Instructions:</h2>
-                    <input
-                        type="text"
-                        name="instructions"
-                        id="instructions"
-                        onChange={handleChanges}
-                        placeholder="Instructions"
-                        value={recipeInfo.instructions}
-                    />
-                </label>
-                <div>
-                    spacer
                 </div>
-                <button type="submit">Add Recipe</button>
+
+                <div className="add-form-wrapper">
+                <h2>Ingredient Amount:</h2>
+
+                    <input
+                        type="text"
+                        name="ingredientAmount"
+                        onChange={handleIngredientAmountInput}
+                        placeholder="ingredient amount"
+                        value={ingredientAmount}
+                    />
+
+                <h2>Ingredient Name:</h2>
+
+                    <input
+                        type="text"
+                        name="ingredientName"
+                        onChange={handleIngredientNameInput}
+                        placeholder="ingredient name"
+                        value={ingredientName}
+                    />
+
+                </div>
+                {/* intended to set <ingredients: []> to state */}
+                <button onClick={handleIngredientInput}>Add New Ingredient</button>
+
+                <div className="add-form-wrapper">
+                    <h2>Step Number:</h2>
+
+                    <input
+                        type="text"
+                        name="instructionStepNum"
+                        onChange={handleInstructionStepNumInput}
+                        placeholder="step number"
+                        value={instructionStepNum}
+                    />
+
+                    <h2>Step Procedure:</h2>
+
+                    <input
+                        type="text"
+                        name="instruction"
+                        onChange={handleInstructionInstructionInput}
+                        placeholder="instruction"
+                        value={instruction}
+                    />
+
+                </div>
+                {/* intended to set <instructions: []> to state */}
+                <button onClick={handleInstructionInput}>Add New Instruction</button>
+
+                <hr />
+                <button>Add New Recipe</button>
             </form>
         </div>
     );
 };
 
 export default AddRecipe;
-

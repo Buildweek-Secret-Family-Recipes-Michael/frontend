@@ -6,15 +6,18 @@ import axios from "axios";
 const formSchema = yup.object().shape({
   username: yup.string(),
   password: yup.string(),
+
 })
 export default function RegisterForm() {
     const [userState, setUserState] = useState({
       username: '',
       password: '',
+
     })
   const [errState, setErrState] = useState({
     username: '',
     password: '',
+
     })
     const [buttonDisabled, setButtonDisabled] = useState(true)
     useEffect(() => {
@@ -59,9 +62,11 @@ export default function RegisterForm() {
     return (
         <form onSubmit={formSubmit}>
         <ul>
+
                 <section className='formContent'>    <label
           className="Labels"   htmlFor="username">User Name
             <div className="Form-input">
+
               <input
                  className="inputText"
                 id="username"
@@ -74,6 +79,8 @@ export default function RegisterForm() {
             </div>
           </label>
           </section>
+
+
           <section className='formContent'>    <label
             className="Labels" htmlFor="password">Password
               <div className="Form-input">
@@ -87,7 +94,9 @@ export default function RegisterForm() {
                   onChange={inputChange}
                 />
               </div>
+
           </label></section>
+
         <button
           type="submit"
           id="submit"

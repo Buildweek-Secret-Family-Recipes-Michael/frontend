@@ -1,0 +1,47 @@
+.formContent {
+  font-size: 2rem;
+  padding-bottom: 4rem;
+  width: 40rem;
+  margin: 0 auto;
+}
+
+input {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+ul {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.Form-input {
+  padding-top: 2rem;
+}
+
+/*  */
+
+@media (max-width: 1119px) {
+  .formContent {
+    font-size: 1.6rem;
+    padding-bottom: 2rem;
+    width: auto;
+  }
+  input {
+    font-size: 1.4rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 400) {
+  .formContent {
+    font-size: 1.6rem;
+    padding-bottom: 2rem;
+    width: auto;
+  }
+  input {
+    font-size: .8rem;
+    padding-bottom: 1rem;
+  }
+}
+
