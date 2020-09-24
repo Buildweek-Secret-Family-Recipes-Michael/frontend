@@ -121,17 +121,17 @@ const EditRecipe = () => {
             .then( (res) => {
                 console.log(res.data)
                 getRecipes();
-                push("/Home");
+                push("/protected");
             })
             .catch( (err) => console.log(err));
     };
 
     return (
         <div>
-            <form className="add-recipe-form" onSubmit={handleSubmit}>
+            <form className="add-edit-recipe-forms" onSubmit={handleSubmit}>
                 <h1>Update A Recipe Here:</h1>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe Name:</h2>
                     <input 
                         type="text"
@@ -142,7 +142,7 @@ const EditRecipe = () => {
                     />
                 </div>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe source:</h2>
                     <input 
                         type="text"
@@ -153,9 +153,10 @@ const EditRecipe = () => {
                     />
                 </div>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe Category:</h2>
                     <select
+                        className="dropdown"
                         name="category"
                         onChange={handleChanges}
                         value={recipeInfo.category}
@@ -173,7 +174,7 @@ const EditRecipe = () => {
                     };
                   */}
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                 <h2>Ingredient Amount:</h2>
 
                     <input
@@ -196,9 +197,9 @@ const EditRecipe = () => {
 
                 </div>
                 {/* intended to set <ingredients: []> to state */}
-                <button onClick={handleIngredientInput}>Add New Ingredient</button>
+                <button className="form-button" onClick={handleIngredientInput}>Add New Ingredient</button>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Step Number:</h2>
 
                     <input
@@ -221,10 +222,9 @@ const EditRecipe = () => {
 
                 </div>
                 {/* intended to set <instructions: []> to state */}
-                <button onClick={handleInstructionInput}>Add New Instruction</button>
-
-                <hr />
-                <button>Submit Recipe Edit</button>
+                <button className="form-button" onClick={handleInstructionInput}>Add New Instruction</button>
+                <br />
+                <button className="add-new-recipe-button">Submit Recipe Edit</button>
             </form>
         </div>
     );

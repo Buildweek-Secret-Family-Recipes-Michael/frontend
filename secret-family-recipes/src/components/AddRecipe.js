@@ -111,10 +111,10 @@ const AddRecipe = () => {
 
     return (
         <div>
-            <form className="add-recipe-form" onSubmit={handleSubmit}>
+            <form className="add-edit-recipe-forms" onSubmit={handleSubmit}>
                 <h1>Add A Recipe Here:</h1>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe Name:</h2>
                     <input 
                         type="text"
@@ -125,7 +125,7 @@ const AddRecipe = () => {
                     />
                 </div>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe Source:</h2>
                     <input 
                         type="text"
@@ -136,9 +136,10 @@ const AddRecipe = () => {
                     />
                 </div>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Recipe Category:</h2>
                     <select
+                        className="dropdown"
                         name="category"
                         onChange={handleChanges}
                         value={recipeInfo.category}
@@ -150,7 +151,7 @@ const AddRecipe = () => {
                     </select>
                 </div>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                 <h2>Ingredient Amount:</h2>
 
                     <input
@@ -173,9 +174,9 @@ const AddRecipe = () => {
 
                 </div>
                 {/* intended to set <ingredients: []> to state */}
-                <button onClick={handleIngredientInput}>Add New Ingredient</button>
+                <button className="form-button" onClick={handleIngredientInput}>Add New Ingredient</button>
 
-                <div className="add-form-wrapper">
+                <div className="add-edit-form-wrappers">
                     <h2>Step Number:</h2>
 
                     <input
@@ -198,10 +199,9 @@ const AddRecipe = () => {
 
                 </div>
                 {/* intended to set <instructions: []> to state */}
-                <button onClick={handleInstructionInput}>Add New Instruction</button>
-
-                <hr />
-                <button>Add New Recipe</button>
+                <button className="form-button" onClick={handleInstructionInput}>Add New Instruction</button>
+                <br />
+                <button className="form-button" className="add-new-recipe-button">Add New Recipe</button>
             </form>
         </div>
     );
