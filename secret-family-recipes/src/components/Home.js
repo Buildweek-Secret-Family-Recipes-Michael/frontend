@@ -9,7 +9,7 @@ function Home(props) {
 
   return (
     <div className="home-page">
-
+      <Link className="SearchRecipes" to="/SearchRecipes">Search Recipes</Link>
       <Link className="AddRecipe" to="/AddRecipe">Add A Recipe</Link>
       <Recipes />
 

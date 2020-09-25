@@ -8,6 +8,7 @@ import AddRecipe from "./components/AddRecipe";
 import {axiosWithAuth} from './utils/axiosWithAuth';
 import PrivateRoute from "./components/PrivateRoute";
 import UpdateRecipe from "./components/UpdateRecipe";
+import SearchRecipes from "./components/SearchRecipes";
 
 import "./App.css";
 import "./css/main.css";
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route path="/UpdateRecipe/:id">
               <UpdateRecipe />
+            </Route>
+            <Route path="/SearchRecipes">
+              <SearchRecipes />
             </Route>
           </Switch>
         </GetRecipesContext.Provider>
