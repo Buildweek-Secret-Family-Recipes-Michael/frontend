@@ -1,59 +1,101 @@
-.App {
+body {
   text-align: center;
   background-image: url('https://images.pexels.com/photos/1907227/pexels-photo-1907227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
   height:100vh
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input:focus {
+  outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+select:focus {
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button:focus {
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.add-recipe-form {
-  background-color: #78926b;
-  width: 50%;
+.add-edit-recipe-forms {
+  background-color: rgba(39,128,128, 0.5);
+  width: 85%;
   margin: 0 auto;
   border-radius: 5px;
 }
 
-.add-recipe-form > button {
-  background-color: yellow;
+.add-edit-form-wrappers {
+  background-color: rgba(39,128,128, 0.5);
+  border: 1px solid; 
+  border-radius: 5px;
+  margin: 2.5% 5%;
 }
 
-.add-form-wrapper {
-  border: 2px solid;
+.add-edit-form-wrappers > input {
+  background-color:rgb(186,217,223);
+  border: 1px solid;
   border-radius: 5px;
-  margin: 2.5% 25%;
+  margin-bottom: 5%;
+  width: 90%;
+  font-size: 1.5rem;
+}
+
+.dropdown {
+  width: 50%;
+  margin-bottom: 2.5%;
+  font-size: 1.5rem;
+}
+
+.add-edit-recipe-forms > button, select {
+  background-color: rgb(186,217,223);
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 1.5rem;
+} 
+
+.form-button:active {
+  background-color:rgb(72,166,184); 
+  box-shadow: 0 5px rgb(9,44,46);
+  transform: translateY(4px);
+}
+
+.add-new-recipe-button {
+  margin: 20px;
+  width: 90%;
+}
+
+.add-new-recipe-button:active {
+  background-color: rgb(72,166,184); 
+  box-shadow: 0 5px rgb(9,44,46);
+  transform: translateY(4px);
+}
+
+@media only screen and (min-width: 600px) {
+  .add-edit-recipe-forms {
+    width: 70%;
+  }
+
+  .add-edit-form-wrappers > input {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .add-edit-recipe-forms {
+    width: 60%;
+  }
+
+  .add-edit-form-wrappers > input {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width:1200px) {
+  .add-edit-recipe-forms {
+    width: 50%;
+  }
+
+  .add-edit-form-wrappers > input {
+    width: 70%;
+  }
 }
