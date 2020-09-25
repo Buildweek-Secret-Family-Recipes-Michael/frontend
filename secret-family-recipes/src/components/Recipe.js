@@ -24,7 +24,7 @@ const Recipe = (props) => {
             size="mini"
             src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
           />
-          <Card.Header>Recipe Title: {props.recipe.name}</Card.Header>
+          <Card.Header> Recipe Title: {props.recipe.name}</Card.Header>
           <Card.Meta>Recipe Source: {props.recipe.source}</Card.Meta>
           <Card.Description>
             Category: <strong>{props.recipe.category}</strong>
